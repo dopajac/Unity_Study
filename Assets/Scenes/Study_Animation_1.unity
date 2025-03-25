@@ -1339,7 +1339,7 @@ MonoBehaviour:
   worldLayer:
     serializedVersion: 2
     m_Bits: 72
-  boss: {fileID: 0}
+  boss: {fileID: 95397136042348656}
   players2:
   - {fileID: 746220073}
   - {fileID: 402178379}
@@ -1743,6 +1743,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1413981685392942, guid: 69eea5e84da784d48ba1dfc7ddf834e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1864889056587798, guid: 69eea5e84da784d48ba1dfc7ddf834e3, type: 3}
       propertyPath: m_Name
       value: Flame_CATRigHub005
@@ -1750,6 +1754,10 @@ PrefabInstance:
     - target: {fileID: 1864889056587798, guid: 69eea5e84da784d48ba1dfc7ddf834e3, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864889056587798, guid: 69eea5e84da784d48ba1dfc7ddf834e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4202982128137690, guid: 69eea5e84da784d48ba1dfc7ddf834e3, type: 3}
       propertyPath: m_LocalPosition.x
