@@ -48,13 +48,11 @@ public class PlayerCharactor : MonoBehaviour
             float normalizedTime = currentAnimstateInfo.normalizedTime;
             if (isAttacking == false)
             {
-                
                 animator.ResetTrigger("Attack");
                 animator.SetTrigger("Attack");
             }
             else if (0.4f < normalizedTime && normalizedTime <= 0.85f) //두번째 이후부터 공격 
             {
-                
                 animator.ResetTrigger("Attack");
                 animator.SetTrigger("Attack");
             }

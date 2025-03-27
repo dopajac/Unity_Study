@@ -6,6 +6,10 @@ using Random = UnityEngine.Random;
 
 public class Boss_teacher : MonoBehaviour
 {
+    
+    // 상태 패턴의 핵심조건
+    // 상태를 관리하는 주체 필요 , 주체는 행동 x 
+    
     static readonly int SCRATH = Animator.StringToHash("Scratch");
     static readonly int BREATH = Animator.StringToHash("Breath");
     // 상태 이벤트 정보를 만들어서 상태의 특정 시점을 지날 시 이벤트 발생
@@ -41,7 +45,7 @@ public class Boss_teacher : MonoBehaviour
     
     public List<StateEventInfo> EventInfoList { get; private set; }
 
-    private Animator animator;
+    public Animator animator { get; set; }
     private AnimatorStateInfo previousState;
     private readonly int[] bossAttacks = { SCRATH, BREATH };
 
