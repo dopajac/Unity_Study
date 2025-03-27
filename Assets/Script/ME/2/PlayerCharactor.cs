@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
@@ -9,6 +10,8 @@ public class PlayerCharactor : MonoBehaviour
     private Animator animator;
     public AnimatorOverrideController Replaceanimator;
     public float Speed;
+    public float doubleSpeed;
+    public GameObject Sward;
     void Start()
     {
         animator = gameObject.GetComponent<Animator>();
@@ -16,16 +19,14 @@ public class PlayerCharactor : MonoBehaviour
 
     void Update()
     {
+        Speed = animator.GetFloat("Speed");
+        doubleSpeed = animator.GetFloat("Speed") * 3;
         Move();
         UpdateAttackInput();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             animator.runtimeAnimatorController = Replaceanimator;
         }
-
-       
-
-        
     }
 
     private void UpdateAttackInput()
@@ -43,17 +44,21 @@ public class PlayerCharactor : MonoBehaviour
         
         if (inputAttack && isAttack3 == false)
         {
+            
             float normalizedTime = currentAnimstateInfo.normalizedTime;
             if (isAttacking == false)
             {
+                
                 animator.ResetTrigger("Attack");
                 animator.SetTrigger("Attack");
             }
             else if (0.4f < normalizedTime && normalizedTime <= 0.85f) //두번째 이후부터 공격 
             {
+                
                 animator.ResetTrigger("Attack");
                 animator.SetTrigger("Attack");
             }
+            
         }
     }
 
@@ -65,7 +70,15 @@ public class PlayerCharactor : MonoBehaviour
         animator.SetFloat("MoveX", axisInput.x);
         animator.SetFloat("MoveY", axisInput.y);
         
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.Translate(new Vector3(axisInput.x,0.0f,axisInput.y) * doubleSpeed* Time.deltaTime);
+            return;
+        }
+    
         transform.Translate(new Vector3(axisInput.x,0.0f,axisInput.y) * Speed* Time.deltaTime);
 
     }
+
+    
 }

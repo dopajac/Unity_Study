@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         BossMonster bossMonster = other.GetComponentInParent<BossMonster>();
+        
         if (bossMonster is not null)
         {
             if (!bossMonster.WasHittedPlayer(gameObject))

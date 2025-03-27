@@ -24,9 +24,25 @@ public class MouseRayControllerMy : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out RaycastHit hitInfo,10, worldLayer ))
+            RaycastHit[] hits = Physics.RaycastAll(ray, 10, worldLayer);
+
+            if (hits.Length > 0)
             {
-                var gameObject = hitInfo.collider.gameObject;
+                // 가장 가까운 오브젝트 찾기
+                RaycastHit closestHit = hits[0];
+                float minDistance = hits[0].distance;
+
+                foreach (var hit in hits)
+                {
+                    if (hit.distance < minDistance)
+                    {
+                        minDistance = hit.distance;
+                        closestHit = hit;
+                    }
+                }
+
+                GameObject gameObject = closestHit.collider.gameObject;
+
                 if (gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
                     foreach (var player2 in players2)
@@ -35,9 +51,7 @@ public class MouseRayControllerMy : MonoBehaviour
                         {
                             player2.ChangeHP(-1);
                         }
-
-                    
-                    }    
+                    }
                 }
 
                 if (gameObject.layer == LayerMask.NameToLayer("Boss"))
@@ -46,8 +60,6 @@ public class MouseRayControllerMy : MonoBehaviour
                 }
             }
         }
-
-        
-    } 
+    }
 }
 

@@ -9,10 +9,14 @@ public class Player2 : MonoBehaviour
     
     public int hp = 3;
     private Renderer playerColor;
-
+    public Boss boss;
+    private Collider playerCollider;  
+    
+    
     private void Start()
     {
         playerColor = GetComponent<Renderer>();
+        playerCollider = GetComponent<Collider>(); 
     }
 
     private void Update()
@@ -23,8 +27,15 @@ public class Player2 : MonoBehaviour
     public void ChangeHP(int damege)
     {
         hp -= damege;
+        ChangeColor();
+        StartCoroutine(DisableCollider());
     }
-
+    IEnumerator DisableCollider()
+    {
+        playerCollider.enabled = false;  
+        yield return new WaitForSeconds(3f);  
+        playerCollider.enabled = true;   
+    }
     public void ChangeColor()
     {
         switch (hp)
@@ -44,4 +55,17 @@ public class Player2 : MonoBehaviour
                  
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject rootObject = other.transform.root.gameObject;
+        int bossLayer = LayerMask.NameToLayer("Boss");
+
+        if (rootObject.layer == bossLayer)
+        {
+            ChangeHP(1);
+            
+        }
+    }
+
+    
 }
